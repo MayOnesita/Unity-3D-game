@@ -3641,6 +3641,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8356104788382652267}
+  pMainCamera: {fileID: 0}
+  allRoofs: []
   isMoving: 0
   leftRightMove: 0
   upDownMove: 0

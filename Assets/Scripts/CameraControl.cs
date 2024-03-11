@@ -7,30 +7,43 @@ public class CameraControl : MonoBehaviour
 {
     public Camera cameraToUse;
     public GameObject supViewCamera;
+    public bool isTrigger = false;
 
     void Start()
     {
         supViewCamera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
-    void OnTriggerStay(Collider other)
+    void FixedUpdate()
     {
-        cameraToUse.enabled = true;
-
-        if (other.tag == "Player" && supViewCamera.activeSelf == false)
+        if (isTrigger)
         {
-            cameraToUse.gameObject.SetActive(true);
+            if (supViewCamera.activeSelf == false)
+            {
+                cameraToUse.gameObject.SetActive(true);
+            }
+            else if (supViewCamera.activeSelf != false)
+            {
+                cameraToUse.gameObject.SetActive(false);
+            }
         }
-        else if (other.tag == "Player" && supViewCamera.activeSelf != false)
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
+            isTrigger = true;
+            cameraToUse.enabled = true;
             cameraToUse.gameObject.SetActive(false);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
+            isTrigger = false;
             cameraToUse.gameObject.SetActive(false);
             cameraToUse.enabled = false;
         }
