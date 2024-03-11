@@ -8,6 +8,8 @@ TagManager:
   - HallwayLights
   - RoomLights
   - RoomCameras
+  - CameraTrigger
+  - Roof
   layers:
   - Default
   - TransparentFX

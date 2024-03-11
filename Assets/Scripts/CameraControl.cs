@@ -1,31 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    public GameObject prevCamera;
-    public GameObject newCamera;
-
-    public bool cameraOn = false;
-    public int cameraNumber;
+    public Camera cameraToUse;
+    public GameObject supViewCamera;
 
     void Start()
     {
-        cameraNumber = 1;
-        StartCoroutine(CameraSwitch());
-
-        
+        supViewCamera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
-    IEnumerator CameraSwitch()
+    void OnTriggerStay(Collider other)
     {
-        yield return new WaitForSeconds(5);
-        newCamera.SetActive(true);
-        prevCamera.SetActive(false);
-        cameraOn = true;
-        cameraNumber = 2;
+        cameraToUse.enabled = true;
 
+        if (other.tag == "Player" && supViewCamera.activeSelf == false)
+        {
+            cameraToUse.gameObject.SetActive(true);
+        }
+        else if (other.tag == "Player" && supViewCamera.activeSelf != false)
+        {
+            cameraToUse.gameObject.SetActive(false);
+        }
     }
 
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            cameraToUse.gameObject.SetActive(false);
+            cameraToUse.enabled = false;
+        }
+    }
 }
