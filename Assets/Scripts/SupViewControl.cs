@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class SmoothCameraFollow : MonoBehaviour
 {
+    /// <summary>
+    /// This class is used to control the camera that follows an specific player.
+    /// </summary>
+    /// <remarks>
+    ///  The variable _offset is a Vector3 that represents the initial distance between the camera and the player it is following.
+    ///  The variable smoothTime is a float representing the time taken for the camera to move from its current position to the desired position.
+    /// </remarks>
+
     private Vector3 _offset;
     [SerializeField] private Transform playerToFollow;
     [SerializeField] private float smoothTime;

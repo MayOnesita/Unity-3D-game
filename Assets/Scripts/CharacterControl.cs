@@ -5,6 +5,11 @@ using UnityEngine.UIElements;
 
 public class CharacterControl : MonoBehaviour
 {
+    /// <summary>
+    /// This class is used to control the player movement and triggers on the keyboard.
+    /// </summary>
+
+
     public GameObject player;
     public Camera pMainCamera;
     public GameObject[] allRoofs;
@@ -18,7 +23,6 @@ public class CharacterControl : MonoBehaviour
         allRoofs = GameObject.FindGameObjectsWithTag("Roof");
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
@@ -48,7 +52,10 @@ public class CharacterControl : MonoBehaviour
         }
 
         if (Input.GetButton("SupView"))
-        {  
+        {
+            /// <remarks>
+            ///  When the user inputs the "space" key on the keyboard, the roof hides and the camera that follows the player is enabled. 
+            /// </remarks>
             foreach (GameObject roof in allRoofs)
             {
                 roof.SetActive(false);

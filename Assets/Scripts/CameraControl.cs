@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
+    /// <summary>
+    /// This class is used to control all scenario cameras, iterating with the camera that follows the player.
+    /// </summary>
+
     public Camera cameraToUse;
     public GameObject supViewCamera;
     public bool isTrigger = false;
